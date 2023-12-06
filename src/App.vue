@@ -1,25 +1,25 @@
 <script setup>
-import PanierAchat from './components/PanierAchat.vue';
+import PanierAchat from './components/PanierAchat.vue'
+import ListeArticles from './components/ListeArticles.vue'
 </script>
 
 <template>
   <header>
-
-    <div class="wrapper">
-    </div>
+    <div class="wrapper"></div>
   </header>
 
   <main>
-    <PanierAchat />
+    <section>
+      <ListeArticles />
+    </section>
+    <section>
+      <PanierAchat />
+    </section>
   </main>
 
-
   <template>
-   <footer>
-
-   </footer>
+    <footer></footer>
   </template>
 </template>
 
-<style scoped>
-</style>
+<style scoped></style>
