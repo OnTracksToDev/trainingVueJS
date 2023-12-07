@@ -1,42 +1,34 @@
 <script>
+import { mapState, mapActions } from 'pinia'
+import { usePanierStore } from '@/stores/panier'
+
 export default {
-  data() {
-    return {
-      panier: []
-    }
-  },
   methods: {
-    retirerDuPanier(index) {
-      // Si  qté > 1
-      if (this.panier[index].quantite > 1) {
-        this.panier[index].quantite-- //décrémente qté
-      } else {
-        this.panier.splice(index, 1) // retire article du panier
-      }
-    },
-    calculerTotal() {
-      return this.panier.reduce((acc, curV) => acc + curV.prix * curV.quantite, 0)
-    }
+    ...mapActions(usePanierStore, {
+      retirerDuPanierAction: 'retirerDuPanier'
+    })
+  },
+  computed: {
+    ...mapState(usePanierStore, {
+      getPanierState: 'getPanier',
+      calculerTotalState: 'calculerTotal'
+    })
   }
 }
 </script>
 
 <template>
-  <div>
-    //v-if="panier.length > 0"
-    <div>
-      <h3>Contenu du panier</h3>
-      <ul>
-        <li v-for="(item, index) in panier" :key="item.index" class="listePanier">
-          {{ item.nom }} : {{ item.prix }}€ x{{ item.quantite }}
-          <button @click="retirerDuPanier(index)">Retirer du panier</button>
-        </li>
-      </ul>
-      <p>Total: {{ calculerTotal() }}€</p>
-    </div>
+  <div v-if="getPanierState.length > 0">
+    <h3>Contenu du panier</h3>
+    <ul>
+      <li v-for="(item, index) in getPanierState" :key="item.index">
+        {{ item.nom }} : {{ item.prix }}€ x {{ item.quantite }}
+        <button @click="retirerDuPanierAction(index)">Retirer du panier</button>
+      </li>
+    </ul>
+    <p>Total: {{ calculerTotalState }}€</p>
   </div>
 </template>
-
 <style scoped>
 div {
   margin: auto;
@@ -54,7 +46,7 @@ li {
   align-items: center;
   margin-bottom: 10px;
   padding: 15px;
-  background-color: bisque;
+  background-color:aqua;
   border-radius: 8px;
 }
 button {
@@ -67,8 +59,5 @@ button {
 }
 button:hover {
   background-color: rgb(176, 148, 80);
-}
-.listePanier {
-  background-color: aquamarine;
 }
 </style>

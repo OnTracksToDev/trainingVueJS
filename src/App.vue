@@ -1,25 +1,16 @@
-<script setup>
-import PanierAchat from './components/PanierAchat.vue'
-import ListeArticles from './components/ListeArticles.vue'
+<script>
+import PageParent from '@/components/PageParent.vue';
+
+export default {
+components: {
+PageParent,
+},
+};
 </script>
 
 <template>
-  <header>
-    <div class="wrapper"></div>
-  </header>
-
-  <main>
-    <section>
-      <ListeArticles />
-    </section>
-    <section>
-      <PanierAchat />
-    </section>
-  </main>
-
-  <template>
-    <footer></footer>
+  <div id="app">
+  <page-parent></page-parent>
+  </div>
   </template>
-</template>
-
-<style scoped></style>
+  
