@@ -14,7 +14,7 @@ export const usePanierStore = defineStore('panier', {
   actions: {
     ajouterAuPanier(article) {
       //verifie présence nouvel article dans le panier
-      const index = this.panier.findIndex((item) => item.index === article.index)
+      const index = this.panier.findIndex((item) => item.id === article.id)
 
       if (index !== -1) {
         //verifie si article est dans panier
