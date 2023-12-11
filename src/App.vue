@@ -1,16 +1,11 @@
 <script>
-import PageParent from '@/components/PageParent.vue';
 
-export default {
-components: {
-PageParent,
-},
-};
 </script>
 
 <template>
   <div id="app">
-  <page-parent></page-parent>
+    <router-link to="/">Home</router-link>  --  
+    <router-link to="/boutique">boutique</router-link>
   </div>
-  </template>
-  
+  <RouterView />
+</template>

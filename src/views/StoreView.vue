@@ -1,14 +1,8 @@
 <script>
-import { mapState, mapActions } from 'pinia'
+import { mapState } from 'pinia'
 import { useArticlesStore } from '@/stores/articles'
-import { usePanierStore } from '@/stores/panier'
 
 export default {
-  methods: {
-    ...mapActions(usePanierStore, {
-      ajouterAuPanierAction: 'ajouterAuPanier'
-    })
-  },
   computed: {
     ...mapState(useArticlesStore, {
       getAllArticlesState: 'getAllArticles'
@@ -19,11 +13,16 @@ export default {
 
 <template>
   <div>
-    <h2>Liste d'Articles</h2>
+    <h2>Liste d'Articles de la boutique</h2>
     <ul>
-      <li v-for="article in getAllArticlesState" :key="article.id">
+      <li v-for="article in getAllArticlesState" :key="article.index">
         {{ article.nom }} : {{ article.prix }}€
-        <button @click="ajouterAuPanierAction(article)">Ajouter au panier</button>
+        <router-link
+          :to="{ name: 'ArticlesDetails', params: { id: article.id } }"
+          class="btn btn-success"
+        >
+          VOIR
+        </router-link>
       </li>
     </ul>
   </div>
@@ -38,7 +37,6 @@ div {
 ul {
   list-style: none;
   padding: 0;
-  
 }
 li {
   display: flex;

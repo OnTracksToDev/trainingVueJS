@@ -21,12 +21,12 @@ export default {
   <div v-if="getPanierState.length > 0">
     <h3>Contenu du panier</h3>
     <ul>
-      <li v-for="(item, index) in getPanierState" :key="item.index">
+      <li v-for="(item, index) in getPanierState" :key="item.id">
         {{ item.nom }} : {{ item.prix }}€ x {{ item.quantite }}
         <button @click="retirerDuPanierAction(index)">Retirer du panier</button>
       </li>
     </ul>
-    <p>Total: {{ calculerTotalState }}€</p>
+    <p>Total:💸 {{ calculerTotalState }}€</p>
   </div>
 </template>
 <style scoped>
